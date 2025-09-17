@@ -30,6 +30,8 @@ try {
         FOREIGN KEY (shop_id) REFERENCES shops(id) on DELETE CASCADE
     )");
 
+    echo "Database setup complete! Tables 'shops' and 'comments' are available.";
+
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
