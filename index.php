@@ -52,6 +52,7 @@ $shops_data = [
     ]
 ];
 
+$is_admin_page = (strpos($_SERVER['REQUEST_URI'], '/admin') !== false);
 
 ?>
 
