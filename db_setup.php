@@ -21,6 +21,11 @@ try {
         )
     ");
 
+    $db->exec("CREATE TABLE IF NOT EXISTS comments(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        FOREIGN KEY (shop_id) REFERENCES shops(id) on DELETE CASCADE
+    )");
+
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
