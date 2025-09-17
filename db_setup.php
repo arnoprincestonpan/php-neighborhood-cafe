@@ -23,6 +23,10 @@ try {
 
     $db->exec("CREATE TABLE IF NOT EXISTS comments(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        shop_id INTEGER;
+        email TEXT NOT NULL;
+        comment TEXT NOT NULL;
+        created_at TEXT DEFAULT CURRENT_TIMESTAMP;
         FOREIGN KEY (shop_id) REFERENCES shops(id) on DELETE CASCADE
     )");
 
