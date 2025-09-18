@@ -66,6 +66,10 @@ $filtered_shops = array_filter($shops_data, fn($shop) =>
     ($RATING_MIN <= $shop['rating'] && $shop['rating'] <= $rating_selected)
 );
 
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -124,37 +128,47 @@ $filtered_shops = array_filter($shops_data, fn($shop) =>
             </section>
         <?php endif;?>
     <!-- Admin Page -->
-    <?php elseif($uri === '/admin'):?>
-        <h2>Admin Portal</h2>
-        <a href="/add_shop" alt="Add New Shop Link">Add New Shop +</a>
-        <?php if(!$shops_data):?>
-            <p>There are no shops entered. Please enter some data.</p>
-        <?php else:?>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Address</td>
-                        <td>Rating</td>
-                        <td>Neighbourhood</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($shops_data as $shop):?>
+    <?php elseif(str_starts_with($uri, '/admin')):?>
+        <!-- Admin Base -->
+        <?php if($uri === '/admin'):?>
+            <h2>Admin Portal</h2>
+            <a href="/add_shop" alt="Add New Shop Link">Add New Shop +</a>
+            <?php if(!$shops_data):?>
+                <p>There are no shops entered. Please enter some data.</p>
+            <?php else:?>
+                <table>
+                    <thead>
                         <tr>
-                            <td><?=$shop['name']?></td>
-                            <td><?=$shop['address']?></td>
-                            <td><?=$shop['rating']?></td>
-                            <td><?=$shop['neighbourhood']?></td>
+                            <td>Name</td>
+                            <td>Address</td>
+                            <td>Rating</td>
+                            <td>Neighbourhood</td>
+                            <td>Actions</td>
                         </tr>
-                    <?php endforeach;?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach($shops_data as $shop):?>
+                            <tr>
+                                <td><?=$shop['name']?></td>
+                                <td><?=$shop['address']?></td>
+                                <td><?=$shop['rating']?></td>
+                                <td><?=$shop['neighbourhood']?></td>
+                                <td>
+                                    <form action="/admin" method="POST">
+                                        <input type="hidden" name="action" value="delete_shop"/>
+                                        <input type="hidden" name="shop_id" value="<?=htmlspecialchars($shop['id'])?>"/>
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+            <?php endif;?>
+            <!-- Add New Shop -->
+            
+            <!-- Edit Shop -->
         <?php endif;?>
-    <!-- Add New Shop -->
-    <?php elseif($uri === '/add_shop'):?>
-        <h2>Add A New Shop</h2>
-        <a href="/admin" alt="Link back to Admin">Cancel</a>
     <!-- 404 Not Found -->
     <?php else:?>
         <h1>404: Page Not Found</h1>
