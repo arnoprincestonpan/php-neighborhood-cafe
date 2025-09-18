@@ -52,7 +52,10 @@ $shops_data = [
     ]
 ];
 
-$uri = $_SERVER['REQUEST_URI'];
+$RATING_MIN = 0;
+$RATING_MAX = 5;
+$rating_selected = isset($_GET['rating']) ? $_GET['rating'] : $RATING_MAX;
+$uri = strtok($_SERVER['REQUEST_URI'], '?');
 
 ?>
 
@@ -84,6 +87,14 @@ $uri = $_SERVER['REQUEST_URI'];
         <?php if($shops_data):?>
             <section>
                 <p>Filter Section</p>
+                <form action="/" type="GET">
+                    <label for="rating">
+                        Rating
+                    </label>
+                    <p><span><?=$RATING_MIN?></span> / <span><?=$rating_selected?></span></p>
+                    <input id="rating" name="rating" type="range" min="<?=$RATING_MIN?>" max="<?=$RATING_MAX?>" value="<?=$RATING_MAX?>" step="0.01"/>
+                    <button type="submit">Filter</button>                
+                </form>
             </section>
             <section>
                 <?php foreach($shops_data as $shop):?>
@@ -100,5 +111,10 @@ $uri = $_SERVER['REQUEST_URI'];
             </section>
         <?php endif;?>
     <?php endif;?>
+    <footer>
+        <center>
+            <h5>Copyright(R) Arno Pan</h5>
+        </center>
+    </footer>
 </body>
 </html>
