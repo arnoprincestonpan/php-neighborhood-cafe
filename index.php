@@ -125,9 +125,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['a
                                 <td><?=$shop['neighbourhood']?></td>
                                 <td>
                                     <form action="/admin/edit_shop/<?=htmlspecialchars($shop['id'])?>" method="POST">
-                                        <input type="hidden" name="action" value="add_shop"/>
+                                        <input type="hidden" name="action" value="edit_shop"/>
                                         <input type="hidden" name="shop_id" value="<?=htmlspecialchars($shop['id'])?>"/>
-                                        <button type="submit">Add</button>
+                                        <button type="submit">Edit</button>
                                     </form>
                                     <form action="/admin" method="POST">
                                         <input type="hidden" name="action" value="delete_shop"/>
