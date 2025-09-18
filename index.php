@@ -66,14 +66,38 @@ $uri = $_SERVER['REQUEST_URI'];
         if($uri === '/'){
             print "Neighbourhood Cafe";
         } elseif(strpos($uri, '/admin') !== false){
-            print 'N.Cafe: Admin';
+            print 'Admin - Neighbourhood Cafe';
         } else {
+            http_response_code(404);
             print "404 Not Found";
         }
         ?>
     </title>
 </head>
 <body>
-    
+    <!-- Home Page "/" -->
+    <?php if($uri === '/'): ?>
+        <header>
+            <h2>Neighbourhood Cafe</h2>
+            <p>Check out the neighbourhood's cafes. Estimated at <?=count($shops_data)?> cafe(s). </p>
+        </header>
+        <?php if($shops_data):?>
+            <section>
+                <p>Filter Section</p>
+            </section>
+            <section>
+                <?php foreach($shops_data as $shop):?>
+                    <article>
+                        <h3><?=$shop['name']?></h3>
+                        <p><?=$shop['neighbourhood']?></p>
+                    </article>
+                <?php endforeach;?>
+            </section>
+        <?php else:?>
+            <section>
+                <p>There are no listings available. Please check server.</p>
+            </section>
+        <?php endif;?>
+    <?php endif;?>
 </body>
 </html>
