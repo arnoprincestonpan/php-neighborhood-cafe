@@ -57,6 +57,10 @@ $RATING_MAX = 5;
 $rating_selected = isset($_GET['rating']) ? $_GET['rating'] : $RATING_MAX;
 $uri = strtok($_SERVER['REQUEST_URI'], '?');
 
+$filtered_shops = array_filter($shops_data, fn($shop) =>
+    ($RATING_MIN <= $shop['rating'] && $shop['rating'] <= $rating_selected)
+);
+
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +101,7 @@ $uri = strtok($_SERVER['REQUEST_URI'], '?');
                 </form>
             </section>
             <section>
-                <?php foreach($shops_data as $shop):?>
+                <?php foreach($filtered_shops as $shop):?>
                     <article>
                         <h3><?=$shop['name']?></h3>
                         <p><?=$shop['neighbourhood']?></p>
