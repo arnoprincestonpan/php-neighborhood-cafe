@@ -132,7 +132,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <!-- Admin Base -->
         <?php if($uri === '/admin'):?>
             <h2>Admin Portal</h2>
-            <a href="/add_shop" alt="Add New Shop Link">Add New Shop +</a>
+            <a href="/admin/add_shop" alt="Add New Shop Link">Add New Shop +</a>
             <?php if(!$shops_data):?>
                 <p>There are no shops entered. Please enter some data.</p>
             <?php else:?>
@@ -165,9 +165,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     </tbody>
                 </table>
             <?php endif;?>
-            <!-- Add New Shop -->
-            
-            <!-- Edit Shop -->
+        <?php elseif($uri === '/admin/add_shop'):?>
+        <!-- Add New Shop -->
+            <h2>Add New Shop</h2>
+            <a href="/admin" alt="Back to Admin Portal Link">Cancel</a>
+        <?php elseif($uri === '/admin/edit_shop'):?>
+        <!-- Edit Shop -->
+            <h2>Edit Shop</h2>
+            <a href="/admin" alt="Back to Admin Portal Link">Cancel</a>
         <?php endif;?>
     <!-- 404 Not Found -->
     <?php else:?>
