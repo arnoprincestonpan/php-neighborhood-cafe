@@ -124,6 +124,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['a
                                 <td><?=$shop['rating']?></td>
                                 <td><?=$shop['neighbourhood']?></td>
                                 <td>
+                                    <form action="/admin/edit_shop/<?=htmlspecialchars($shop['id'])?>" method="POST">
+                                        <input type="hidden" name="action" value="add_shop"/>
+                                        <input type="hidden" name="shop_id" value="<?=htmlspecialchars($shop['id'])?>"/>
+                                        <button type="submit">Add</button>
+                                    </form>
                                     <form action="/admin" method="POST">
                                         <input type="hidden" name="action" value="delete_shop"/>
                                         <input type="hidden" name="shop_id" value="<?=htmlspecialchars($shop['id'])?>"/>
@@ -139,7 +144,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['a
         <!-- Add New Shop -->
             <h2>Add New Shop</h2>
             <a href="/admin" alt="Back to Admin Portal Link">Cancel</a>
-        <?php elseif($uri === '/admin/edit_shop' || $uri === '/admin/edit_shop/'):?>
+        <?php elseif(str_starts_with($uri, '/admin/edit_shop')):?>
         <!-- Edit Shop -->
             <h2>Edit Shop</h2>
             <a href="/admin" alt="Back to Admin Portal Link">Cancel</a>
