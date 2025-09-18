@@ -1,4 +1,9 @@
 <?php
+/*
+TITLE: Main Page - One Page Web Application
+FILE: index.php
+PURPOSE: To display the correct page based on URL. And function based on page. 
+*/
 $shops_data = [
     [
         'id' => 1,
@@ -114,6 +119,12 @@ $filtered_shops = array_filter($shops_data, fn($shop) =>
                 <p>There are no listings available. Please check server.</p>
             </section>
         <?php endif;?>
+    <!-- Admin Page -->
+    <?php elseif($uri === '/admin'):?>
+        <h2>Admin Portal</h2>
+    <!-- 404 Not Found -->
+    <?php else:?>
+        <h1>404: Page Not Found</h1>
     <?php endif;?>
     <footer>
         <center>
