@@ -52,7 +52,7 @@ $shops_data = [
     ]
 ];
 
-$is_admin_page = (strpos($_SERVER['REQUEST_URI'], '/admin') !== false);
+$uri = $_SERVER['REQUEST_URI'];
 
 ?>
 
@@ -61,7 +61,17 @@ $is_admin_page = (strpos($_SERVER['REQUEST_URI'], '/admin') !== false);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>
+        <?php
+        if($uri === '/'){
+            print "Neighbourhood Cafe";
+        } elseif(strpos($uri, '/admin') !== false){
+            print 'N.Cafe: Admin';
+        } else {
+            print "404 Not Found";
+        }
+        ?>
+    </title>
 </head>
 <body>
     
