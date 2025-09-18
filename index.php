@@ -3,7 +3,7 @@ $shops_data = [
     [
         'id' => 1,
         'name' => 'The Daily Grind',
-        'address' => '123 Coffee St.',
+        'address' => '123 Coffee St., SomeCity State POSTAL',
         'rating' => 4.5,
         'hours_open' => '8 AM - 6 PM',
         'food_availability' => 'Baked goods, sandwiches, salads',
@@ -13,7 +13,7 @@ $shops_data = [
     [
         'id' => 2,
         'name' => 'Books & Brews',
-        'address' => '45 Reading Blvd.',
+        'address' => '45 Reading Blvd., SomeCity State POSTAL',
         'rating' => 4.8,
         'hours_open' => '9 AM - 9 PM',
         'food_availability' => 'Coffee, tea, and light snacks',
@@ -23,7 +23,7 @@ $shops_data = [
     [
         'id' => 3,
         'name' => 'Urban Eatery',
-        'address' => '789 Main Ave.',
+        'address' => '789 Main Ave., SomeCity State POSTAL',
         'rating' => 4.2,
         'hours_open' => '11 AM - 10 PM',
         'food_availability' => 'Burgers, fries, shakes',
@@ -33,7 +33,7 @@ $shops_data = [
     [
         'id' => 4,
         'name' => 'Garden Grill',
-        'address' => '10 Farm Rd.',
+        'address' => '10 Farm Rd., SomeCity State POSTAL',
         'rating' => 3.9,
         'hours_open' => '12 PM - 8 PM',
         'food_availability' => 'Vegan and vegetarian options',
@@ -43,7 +43,7 @@ $shops_data = [
     [
         'id' => 5,
         'name' => 'Sweet Surrender',
-        'address' => '321 Dessert St.',
+        'address' => '321 Dessert St., SomeCity State POSTAL',
         'rating' => 5.0,
         'hours_open' => '10 AM - 7 PM',
         'food_availability' => 'Cupcakes, macarons, pastries',
@@ -90,6 +90,7 @@ $uri = $_SERVER['REQUEST_URI'];
                     <article>
                         <h3><?=$shop['name']?></h3>
                         <p><?=$shop['neighbourhood']?></p>
+                        <p><?=str_replace(',', '<br/>', $shop['address'])?></p>
                     </article>
                 <?php endforeach;?>
             </section>
