@@ -100,8 +100,8 @@ $filtered_shops = array_filter($shops_data, fn($shop) =>
                     <label for="rating">
                         Rating
                     </label>
-                    <p><span><?=$RATING_MIN?></span> / <span><?=$rating_selected?></span></p>
-                    <input id="rating" name="rating" type="range" min="<?=$RATING_MIN?>" max="<?=$RATING_MAX?>" value="<?=$RATING_MAX?>" step="0.01"/>
+                    <p><span><?=$RATING_MIN?></span> / <span id="rating_selected_display"></span></p>
+                    <input id="rating" name="rating" type="range" min="<?=$RATING_MIN?>" max="<?=$RATING_MAX?>" value="<?=$rating_selected?>" step="0.01" oninput="updateRatingSelectedDisplay()"/>
                     <button type="submit">Filter</button>                
                 </form>
             </section>
@@ -131,5 +131,15 @@ $filtered_shops = array_filter($shops_data, fn($shop) =>
             <h5>Copyright(R) Arno Pan</h5>
         </center>
     </footer>
+    <script>
+        const ratingInput = document.getElementById('rating');
+        const ratingSelectedDisplay = document.getElementById('rating_selected_display');
+
+        ratingSelectedDisplay.textContent = parseFloat(ratingInput.max).toFixed(2);
+
+        const updateRatingSelectedDisplay = () => {
+            ratingSelectedDisplay.textContent = parseFloat(ratingInput.value).toFixed(2);
+        };
+    </script>
 </body>
 </html>
