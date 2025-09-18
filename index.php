@@ -22,16 +22,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['a
         $shop['id'] != $shop_to_delete_id
     );
 
+    $shops_data = array_values($shops_data);
+
     $new_shops_data = "<?php" . PHP_EOL;
     $new_shops_data .= "return " . var_export($shops_data, true) . ';';
     $new_shops_data .= PHP_EOL . "?>";
 
-    $new_shops_data = array_values($shops_data);
+    $results = file_put_contents('dummy_data.php', $new_shops_data);
+    if($results !== false){
+        usleep(2500000); // takes about 2-1/2 seconds for this data to write
+        header("Location: /admin");
+        exit();
+    } else {
+        echo "Error: Could not save data. Please try again. Or check data.";
+        error_log('Failed to overwrite data to dummy_data.php');
+    }
 
-    file_put_contents('dummy_data.php', $new_shops_data);
-
-    header("Location: /admin");
-    exit();
 }
 
 ?>
