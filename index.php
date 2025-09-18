@@ -66,8 +66,15 @@ $filtered_shops = array_filter($shops_data, fn($shop) =>
     ($RATING_MIN <= $shop['rating'] && $shop['rating'] <= $rating_selected)
 );
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete_shop'){
+    $shop_to_delete_id = $_POST['shop_id'];
 
+    $shops_data = array_filter($shops_data, fn($shop) =>
+        $shop['id'] != $shop_to_delete_id
+    );
+
+    header("Location: /admin");
+    exit();
 }
 
 ?>
@@ -130,7 +137,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <!-- Admin Page -->
     <?php elseif(str_starts_with($uri, '/admin')):?>
         <!-- Admin Base -->
-        <?php if($uri === '/admin'):?>
+        <?php if($uri === '/admin' || $uri === '/admin/'):?>
             <h2>Admin Portal</h2>
             <a href="/admin/add_shop" alt="Add New Shop Link">Add New Shop +</a>
             <?php if(!$shops_data):?>
@@ -165,11 +172,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     </tbody>
                 </table>
             <?php endif;?>
-        <?php elseif($uri === '/admin/add_shop'):?>
+        <?php elseif($uri === '/admin/add_shop' || $uri === '/admin/add_shop/'):?>
         <!-- Add New Shop -->
             <h2>Add New Shop</h2>
             <a href="/admin" alt="Back to Admin Portal Link">Cancel</a>
-        <?php elseif($uri === '/admin/edit_shop'):?>
+        <?php elseif($uri === '/admin/edit_shop' || $uri === '/admin/edit_shop/'):?>
         <!-- Edit Shop -->
             <h2>Edit Shop</h2>
             <a href="/admin" alt="Back to Admin Portal Link">Cancel</a>
