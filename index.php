@@ -6,6 +6,8 @@ PURPOSE: To display the correct page based on URL. And function based on page.
 */
 $shops_data = require 'dummy_data.php';
 
+session_start();
+
 $RATING_MIN = 0;
 $RATING_MAX = 5;
 $rating_selected = isset($_GET['rating']) ? $_GET['rating'] : $RATING_MAX;

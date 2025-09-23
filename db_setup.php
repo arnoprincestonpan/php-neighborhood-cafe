@@ -23,14 +23,21 @@ try {
 
     $db->exec("CREATE TABLE IF NOT EXISTS comments(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        shop_id INTEGER;
-        email TEXT NOT NULL;
-        comment TEXT NOT NULL;
-        created_at TEXT DEFAULT CURRENT_TIMESTAMP;
+        shop_id INTEGER,
+        email TEXT NOT NULL,
+        comment TEXT NOT NULL,
+        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (shop_id) REFERENCES shops(id) on DELETE CASCADE
     )");
 
-    echo "Database setup complete! Tables 'shops' and 'comments' are available.";
+    $db->exec("CREATE TABLE IF NOT EXISTS users(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL,
+        role TEXT NOT NULL
+    )");
+
+    echo "Database setup complete! Tables 'shops', 'comments', and 'users' are available.";
 
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
