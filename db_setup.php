@@ -17,7 +17,8 @@ try {
         hours_open TEXT,
         food_availability TEXT,
         image_link TEXT,
-        neighbourhood TEXT
+        neighbourhood TEXT,
+        pricing INTEGER
         )
     ");
 
