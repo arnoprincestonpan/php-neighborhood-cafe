@@ -9,6 +9,7 @@ return [
         'food_availability' => 'Espresso, Lattes, Pastries',
         'image_link' => 'uploads/images/daily-grind.jpg',
         'neighbourhood' => 'Gastown',
+        'pricing' => 1,
     ),
     array (
         'id' => 2,
@@ -19,6 +20,7 @@ return [
         'food_availability' => 'Drip Coffee, Sandwiches',
         'image_link' => 'uploads/images/morning-brew.jpg',
         'neighbourhood' => 'Kitsilano',
+        'pricing' => 1,
     ),
     array (
         'id' => 3,
@@ -29,6 +31,7 @@ return [
         'food_availability' => 'Burgers, fries, shakes',
         'image_link' => 'uploads/images/urban-eatery.jpg',
         'neighbourhood' => 'Midtown',
+        'pricing' => 2,
     ),
     array (
         'id' => 4,
@@ -39,6 +42,7 @@ return [
         'food_availability' => 'Specialty Tea, Bagels, Muffins',
         'image_link' => 'uploads/images/brewed-awakening.jpg',
         'neighbourhood' => 'Yaletown',
+        'pricing' => 3,
     ),
     array (
         'id' => 5,
@@ -49,6 +53,7 @@ return [
         'food_availability' => 'Breakfast platters, Smoothies',
         'image_link' => 'uploads/images/cafe-delight.jpg',
         'neighbourhood' => 'Downtown',
+        'pricing' => 2,
     ),
     array (
         'id' => 6,
@@ -59,6 +64,7 @@ return [
         'food_availability' => 'Waffles, Hot Chocolate, Sandwiches',
         'image_link' => 'uploads/images/corner-nook.jpg',
         'neighbourhood' => 'Mount Pleasant',
+        'pricing' => 1,
     ),
     array (
         'id' => 7,
@@ -69,6 +75,6 @@ return [
         'food_availability' => 'Espresso drinks, Pastries, Cookies',
         'image_link' => 'uploads/images/peak-coffee.jpg',
         'neighbourhood' => 'East Van',
+        'pricing' => 2,
     ),
 ];
-?>

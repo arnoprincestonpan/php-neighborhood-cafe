@@ -8,6 +8,12 @@ $shops_data = require 'dummy_data.php';
 
 session_start();
 
+enum PRICING : string {
+    case AFFORDABLE = "1";
+    case PRICEY = "2";
+    case EXPENSIVE = "3";
+}
+
 $RATING_MIN = 0;
 $RATING_MAX = 5;
 $rating_selected = isset($_GET['rating']) ? $_GET['rating'] : $RATING_MAX;
@@ -39,7 +45,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['a
         echo "Error: Could not save data. Please try again. Or check data.";
         error_log('Failed to overwrite data to dummy_data.php');
     }
-
 }
 
 ?>
@@ -78,6 +83,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['a
                     </label>
                     <p><span><?=$RATING_MIN?></span> / <span id="rating_selected_display"></span></p>
                     <input id="rating" name="rating" type="range" min="<?=$RATING_MIN?>" max="<?=$RATING_MAX?>" value="<?=$rating_selected?>" step="0.01" oninput="updateRatingSelectedDisplay()"/>
+
+                    <label for='pricing'>
+                        Pricing
+                    </label>
+                    <select id="pricing" name="pricing">
+                        <option value="">Any</option>
+                        <option value="<?=PRICING::AFFORDABLE->value?>">$</option>
+                        <option value="<?=PRICING::PRICEY->value?>">$$</option>
+                        <option value="<?=PRICING::EXPENSIVE->value?>">$$$</option>
+                    </select>
                     <button type="submit">Filter</button>                
                 </form>
             </section>
